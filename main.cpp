@@ -154,9 +154,37 @@ int main()
 	cout << "str18 (operator /= '-').\n";
 	str18.Show(); cout << endl << endl;
 
-	/*MyString str20 = str18 % 'e';
-	cout << "str20 (operator str18 % 'e').\n";
-	str20.Show(); cout << endl << endl;*/
+	MyString str20 = str5 % 3;
+	cout << "str20 (operator str5 % 3).\n";
+	str20.Show(); cout << endl << endl;
+
+	MyString str21 = str18 % 'e';
+	cout << "str21 (operator str18 % 'e').\n";
+	str21.Show(); cout << endl << endl;
+
+	str5 %= 2;
+	cout << "str5 (operator %= 2).\n";
+	str5.Show(); cout << endl << endl;
+
+	str5 %= 'o';
+	cout << "str5 (operator %= 'o').\n";
+	str5.Show(); cout << endl << endl;
+
+	MyString str22;
+	cout << "str22 ().\n";
+	str22.Show(); cout << endl;
+	str22 = str18;
+	cout << "str22 (operator = str18).\n";
+	str22.Show(); cout << endl << endl;
+
+	int n = (int)str22;
+	cout << "n = (int)str22 = " << n << endl << endl;
+
+	char* s = (char*)str22;
+	cout << "s = (char*)str22 = " << s << endl << endl;
+
+	cout << "str20 (operator ())." << endl;
+	str20(); cout << endl << endl;
 	
 	cout << endl;
 }

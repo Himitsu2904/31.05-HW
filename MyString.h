@@ -52,10 +52,14 @@ public:
 	MyString operator /(char c);
 	MyString& operator /=(int a);
 	MyString& operator /=(char c);
-	MyString operator %(int a); //WIP
-	MyString operator %(char c); //WIP
-	MyString& operator %=(int a); //WIP
-	MyString& operator %=(char c); //WIP
+	MyString operator %(int a);
+	MyString operator %(char c);
+	MyString& operator %=(int a);
+	MyString& operator %=(char c);
+	MyString& operator =(MyString& obj);
+	operator int();
+	operator char* ();
+	void operator()();
 	~MyString();
 };
 

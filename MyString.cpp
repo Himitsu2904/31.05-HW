@@ -709,17 +709,113 @@ MyString& MyString::operator/=(char c)
 	return *this;
 }
 
-MyString MyString::operator%(int a) //WIP
+MyString MyString::operator%(int a)
 {
 	MyString obj;
-	int ind = length / a;
-	int _length = length - ind;
+	int ind = a - 1;
+	int _length = length - a;
 	char* _str = new char[_length + 1];
 	for (int i = ind + 1, j = 0; i < length; i++, j++) _str[j] = str[i];
 	_str[_length] = '\0';
 	obj.Set_str(_str);
 	delete[] _str;
 	return obj;
+}
+
+MyString MyString::operator%(char c)
+{
+	MyString obj;
+	int ind = -1;
+	for (int i = 0; i < length; i++)
+	{
+		if (str[i] == c)
+		{
+			ind = i;
+			break;
+		}
+	}
+	if (ind == -1)
+	{
+		cout << "Character not found." << endl;
+		return obj;
+	}
+	int _length = length - ind - 1;
+	char* _str = new char[_length + 1];
+	for (int i = ind + 1, j = 0; i < length; i++, j++) _str[j] = str[i];
+	_str[_length] = '\0';
+	obj.Set_str(_str);
+	delete[] _str;
+	return obj;
+}
+
+MyString& MyString::operator%=(int a)
+{
+	int ind = a - 1;
+	int _length = length - a;
+	char* _str = new char[_length + 1];
+	for (int i = ind + 1, j = 0; i < length; i++, j++) _str[j] = str[i];
+	_str[_length] = '\0';
+	delete[] str;
+	str = new char[_length + 1];
+	strcpy(str, _str);
+	delete[] _str;
+	length = _length;
+	return *this;
+}
+
+MyString& MyString::operator%=(char c)
+{
+	int ind = -1;
+	for (int i = 0; i < length; i++)
+	{
+		if (str[i] == c)
+		{
+			ind = i;
+			break;
+		}
+	}
+	if (ind == -1)
+	{
+		cout << "Character not found." << endl;
+		return *this;
+	}
+	int _length = length - ind - 1;
+	char* _str = new char[_length + 1];
+	for (int i = ind + 1, j = 0; i < length; i++, j++) _str[j] = str[i];
+	_str[_length] = '\0';
+	delete[] str;
+	str = new char[_length + 1];
+	strcpy(str, _str);
+	delete[] _str;
+	length = _length;
+	return *this;
+}
+
+MyString& MyString::operator=(MyString& obj)
+{
+	if (this == &obj) return *this;
+	if (str != nullptr) delete str;
+	length = obj.length;
+	str = new char[length + 1];
+	strcpy(str, obj.str);
+	return *this;
+}
+
+MyString::operator int()
+{
+	return length;
+}
+
+MyString::operator char* ()
+{
+	char* _str = new char[length + 1];
+	strcpy(_str, str);
+	return _str;
+}
+
+void MyString::operator ()()
+{
+	Show();
 }
 
 MyString::~MyString()
