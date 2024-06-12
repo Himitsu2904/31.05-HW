@@ -801,6 +801,19 @@ MyString& MyString::operator=(MyString& obj)
 	return *this;
 }
 
+//MyString& MyString::operator=(int a)
+//{
+//	if (str != nullptr) delete[] str;
+//	int _length = a;
+//	str = new char[_length + 1 ];
+//	for (int i = 0; i < a; i++)
+//	{
+//		str[i] = '-';
+//	}
+//	str[_length] = '\0';
+//	return *this;
+//}
+
 MyString::operator int()
 {
 	return length;
@@ -821,4 +834,29 @@ void MyString::operator ()()
 MyString::~MyString()
 {
 	delete[] str;
+}
+
+//-------------------------------------------------------------------------
+
+MyString operator+(int a, MyString& obj)
+{
+	MyString rez;
+	int _length = a + obj.Get_length();
+	char* _str = new char[_length + 1];
+	for (int i = 0; i < a; i++)
+	{
+		_str[i] = '-';
+	}
+	//strcat(_str, obj.Get_str());
+	char* __str = obj.Get_str();
+	cout << "__str: " << __str << endl;
+	for (int i = a, j = 0; i < _length; i++, j++)
+	{
+		_str[i] = __str[j];
+	}
+	_str[_length] = '\0';
+	cout << "_str: " << _str << endl;
+	rez.Set_str(_str);
+	rez.Set_length(_length);
+	return rez;
 }

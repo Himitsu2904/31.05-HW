@@ -57,8 +57,9 @@ public:
 	MyString& operator %=(int a);
 	MyString& operator %=(char c);
 	MyString& operator =(MyString& obj);
+	//MyString& operator =(int a);
 	operator int();
-	operator char* ();
+	operator char*();
 	void operator()();
 	~MyString();
 };
