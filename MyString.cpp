@@ -804,15 +804,31 @@ MyString& MyString::operator=(MyString& obj)
 //MyString& MyString::operator=(int a)
 //{
 //	if (str != nullptr) delete[] str;
-//	int _length = a;
-//	str = new char[_length + 1 ];
+//	str = new char[a + 1];
 //	for (int i = 0; i < a; i++)
 //	{
 //		str[i] = '-';
 //	}
-//	str[_length] = '\0';
+//	str[a] = '\0';
+//	cout << "str: " << str << endl;
+//	length = a;
 //	return *this;
 //}
+
+MyString MyString::operator=(int a)
+{
+	MyString rez;
+	//cout << "a = " << a << endl;
+	char* _str = new char[a + 1];
+	for (int i = 0; i < a; i++)
+	{
+		_str[i] = '-';
+	}
+	_str[a] = '\0';
+	cout << "_str: " << _str << endl;
+	rez.Set_str(_str);
+	return rez;
+}
 
 MyString::operator int()
 {
@@ -859,4 +875,29 @@ MyString operator+(int a, MyString& obj)
 	rez.Set_str(_str);
 	rez.Set_length(_length);
 	return rez;
+}
+
+ostream& operator<<(ostream& os, MyString& obj)
+{
+	os << "Length: " << obj.Get_length() << endl;
+	/*char* _str = new char[obj.Get_length() + 1];
+	strcpy(_str, obj.Get_str());
+	_str[obj.Get_length()] = '\0';
+	os << "Str: " << _str << endl;*/
+	os << "Str: " << obj.Get_str() << endl;
+	return os;
+}
+
+istream& operator>>(istream& is, MyString& obj)
+{
+	char buff[100];
+	cout << "Enter a string: ";
+	//gets_s(buff, 100);
+	is >> buff;
+	int _length = strlen(buff);
+	char* _str = new char[_length + 1];
+	strcat(_str, buff);
+	_str[_length] = '\0';
+	obj.Set_str(_str);
+	return is;
 }

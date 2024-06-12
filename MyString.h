@@ -30,13 +30,13 @@ public:
 		-1 Ц перва€ строка меньше чем втора€
 		1 Ц перва€ больше чем втора€
 		0 Ц строки равны!*/
-	MyString operator +(int a);
-	MyString operator +(const char* line);
+	MyString operator +(int a); //global overload
+	MyString operator +(const char* line); //global overload
 	MyString operator +(MyString& obj);
 	MyString& operator +=(int a);
 	MyString& operator +=(const char* line);
 	MyString& operator +=(MyString& obj);
-	MyString operator -(int a);
+	MyString operator -(int a); //global overload
 	MyString operator -(const char* line);
 	MyString operator -(MyString& obj);
 	MyString& operator -=(int a);
@@ -46,7 +46,7 @@ public:
 	MyString operator ++(int);
 	MyString& operator --();
 	MyString operator --(int);
-	MyString operator *(int a);
+	MyString operator *(int a); //global overload
 	MyString& operator *=(int a);
 	MyString operator /(int a);
 	MyString operator /(char c);
@@ -57,7 +57,7 @@ public:
 	MyString& operator %=(int a);
 	MyString& operator %=(char c);
 	MyString& operator =(MyString& obj);
-	//MyString& operator =(int a);
+	MyString operator =(int a);
 	operator int();
 	operator char*();
 	void operator()();
